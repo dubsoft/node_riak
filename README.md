@@ -15,29 +15,32 @@ The library has support for timing each request, resolving siblings, and conditi
 
 ### Constructor
 
-    var RiakClient = require("riak"), client;
-    client = new RiakClient(["host1:port1", "host2:port2", ... "hostn:portn"], "client_id", "pool_name");
+```js
+var RiakClient = require("riak"), client;
+client = new RiakClient(["host1:port1", "host2:port2", ... "hostn:portn"], "client_id", "pool_name");
+```
 
 The `RiakClient` constructor takes a list of host:port pairs, each of which are equivalent nodes in a Riak cluster.
 
 ## Example
 
 Try running the example and you should see something like this:
-
-    ranney-imac:~/work/node_riak (master)$ curl -X DELETE localhost:8098/riak/bucket_1/key_1
-    ranney-imac:~/work/node_riak (master)$ node example.js
-    metric: counter, riak_retry_filter|404_GET=1
-    metric: histogram, LB_Pool_pool_name|GET|bucket_1=51
-    metric: histogram, LB_Pool_pool_name|PUT|bucket_1=7
-    204:  { counter: 1 }
-    ranney-imac:~/work/node_riak (master)$ node example.js
-    metric: histogram, LB_Pool_pool_name|GET|bucket_1=9
-    metric: histogram, LB_Pool_pool_name|PUT|bucket_1=5
-    204:  { counter: 2 }
-    ranney-imac:~/work/node_riak (master)$ node example.js
-    metric: histogram, LB_Pool_pool_name|GET|bucket_1=9
-    metric: histogram, LB_Pool_pool_name|PUT|bucket_1=4
-    204:  { counter: 3 }
+```bash
+ranney-imac:~/work/node_riak (master)$ curl -X DELETE localhost:8098/riak/bucket_1/key_1
+ranney-imac:~/work/node_riak (master)$ node example.js
+metric: counter, riak_retry_filter|404_GET=1
+metric: histogram, LB_Pool_pool_name|GET|bucket_1=51
+metric: histogram, LB_Pool_pool_name|PUT|bucket_1=7
+204:  { counter: 1 }
+ranney-imac:~/work/node_riak (master)$ node example.js
+metric: histogram, LB_Pool_pool_name|GET|bucket_1=9
+metric: histogram, LB_Pool_pool_name|PUT|bucket_1=5
+204:  { counter: 2 }
+ranney-imac:~/work/node_riak (master)$ node example.js
+metric: histogram, LB_Pool_pool_name|GET|bucket_1=9
+metric: histogram, LB_Pool_pool_name|PUT|bucket_1=4
+204:  { counter: 3 }
+```
 
 ---
 
